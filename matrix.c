@@ -5,13 +5,10 @@
 #include "matrix.h"
 
 Matrix createMatrix(int row, int col) {
-  int** data = (int**)(calloc(row, sizeof(int*)));
-  for(int i = 0; i < row; i++) {
-    data[i] = (int*)(calloc(col, sizeof(int)));
-		if(data[i] == NULL) {
-			printf("Memory allocation failed!\n");
-			exit(EXIT_FAILURE);
-		}
+  int* data = (int*)(calloc(row * col, sizeof(int)));
+  if(data == NULL) {
+    printf("Memory allocation failed!\n");
+    exit(EXIT_FAILURE);
   }
   Matrix matrix = {data, row, col};
   return matrix;
@@ -43,11 +40,7 @@ Matrix createRandomMatrix(int row, int col, int seed) {
 	return mat;
 }
 
-void freeMatrix(Matrix mat) {
-	for(int i = 0; i < mat.row; i++) {
-		free(mat.data[i]);	
-	}
-	
+void freeMatrix(Matrix mat) {	
 	free(mat.data);
 }
 
@@ -56,7 +49,7 @@ int getEntry(Matrix mat, int i, int j) {
 		printf("Cannot access (%d, %d) element of the matrix", i, j);
 		exit(EXIT_FAILURE);
 	}
-	return mat.data[i][j];	
+	return mat.data[i * mat.row + j];	
 }
 
 void setEntry(Matrix mat, int i, int j, int x) {
@@ -64,7 +57,7 @@ void setEntry(Matrix mat, int i, int j, int x) {
 		printf("Cannot access (%d, %d) element of the matrix", i, j);
 		exit(EXIT_FAILURE);
 	}
-	mat.data[i][j] = x;	
+	mat.data[i * mat.row + j] = x;	
 }
 
 void printMatrix(Matrix mat) {

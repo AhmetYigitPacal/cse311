@@ -4,7 +4,7 @@
 #include "matrix.h"
 #include "matrixmult.h"
 
-#define RUN_COUNT 10
+#define RUN_COUNT 1
 
 int main(int argc, char** argv) {
 	if(argc < 3) {
@@ -18,11 +18,11 @@ int main(int argc, char** argv) {
   int algorithm = atoi(argv[1]);
 	int row = atoi(argv[2]), col = atoi(argv[2]);
 
-	printf("Creating random matrices...\n");
 	Matrix mat1 = createRandomMatrix(row, col, 103792742);
 	Matrix mat2 = createRandomMatrix(row, col, 932047248);
 
 	for(int i = 0; i < RUN_COUNT; i++) {
+    printf("Multiplying Matrices...\n");
 		timespec_get(&start, TIME_UTC);
 
     switch(algorithm) {
