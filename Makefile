@@ -13,15 +13,15 @@ all:
 	@$(CC) $(CFLAGS) $(SRCS) -o $(OUT)
 
 run-bruteforce-%: all
-	@echo "$(CYAN)Multiplying using brute force with n = $*$(RESET)"
+	@echo "$(CYAN)Multiplying using brute force with n = $*...$(RESET)"
 	@./$(OUT) 0 $*
 
 run-divideconquer-%: all
-	@echo "$(CYAN)Multiplying using native divide and conquer with n = $*$(RESET)"
+	@echo "$(CYAN)Multiplying using native divide and conquer with n = $*...$(RESET)"
 	@./$(OUT) 1 $*
 
 run-strassens-%: all
-	@echo "$(CYAN)Multiplying using Strassen's algorithm with n = $*$(RESET)"
+	@echo "$(CYAN)Multiplying using Strassen's algorithm with n = $*...$(RESET)"
 	@./$(OUT) 2 $*
 
 clean:
